@@ -16,7 +16,9 @@ jobs:
       - name: installer
         shell: cmd
         run: |
-          curl --retry 5 --retry-max-time 120 https://download.ikmultimedia.com/plugins/ProductManager/ik_product_manager_1.0.4.zip -L --output ik_product_manager_1.0.4.zip
+          :more_to_process
+          curl --fail https://download.ikmultimedia.com/plugins/ProductManager/ik_product_manager_1.0.4.zip -L --output ik_product_manager_1.0.4.zip
+          if %ERRORLEVEL% NEQ 0 goto :more_to_process
           
       - name: uncompress 
         shell: cmd
