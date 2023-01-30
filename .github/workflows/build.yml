@@ -17,8 +17,9 @@ jobs:
         shell: cmd
         run: |
           :more_to_process
+          echo "waiting" &&^
+          powershell -nop -c "& {sleep -m 10000}" &&^
           curl --fail https://download.ikmultimedia.com/plugins/ProductManager/ik_product_manager_1.0.4.zip -L --output ik_product_manager_1.0.4.zip
-          powershell -nop -c "& {sleep -m 10000}"
           if %ERRORLEVEL% NEQ 0 goto :more_to_process
           
       - name: uncompress 
