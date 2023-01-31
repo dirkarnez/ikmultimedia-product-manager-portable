@@ -19,7 +19,7 @@ jobs:
           :more_to_process
           echo "waiting" &&^
           powershell -nop -c "& {sleep -m 10000}" &&^
-          curl --fail "https://download.ikmultimedia.com/plugins/ProductManager/ik_product_manager_1.0.4.zip" ^
+          curl -s --fail "https://download.ikmultimedia.com/plugins/ProductManager/ik_product_manager_1.0.4.zip" ^
             -H "authority: download.ikmultimedia.com" ^
             -H "cookie: tracking_cookies=google^%^2Cfacebook^%^2Ciklinkconversion; tracking_cookies_ts=2023-01-31+05^%^3A01^%^3A21; _ga=GA1.2.419310126.1675141283; _gid=GA1.2.1546886731.1675141283; _gat=1; _gcl_au=1.1.1537200537.1675141283; _fbp=fb.1.1675141283181.205757627" ^
             -H "referer: https://www.ikmultimedia.com/" ^
@@ -32,7 +32,7 @@ jobs:
             -H "sec-fetch-user: ?1" ^
             -H "upgrade-insecure-requests: 1" ^
             -H "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" ^
-            -L --output "ik_product_manager_1.0.4.zip"
+            -L -O -J
           if %ERRORLEVEL% NEQ 0 goto :more_to_process
           
       - name: uncompress 
