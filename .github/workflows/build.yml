@@ -14,13 +14,32 @@ jobs:
       targetZip: ikmultimedia-product-manager-portable-${{ github.ref_name }}.zip
     steps:
       - name: installer
-        shell: cmd
+        shell: bash
         run: |
-          :more_to_process
-          echo "waiting" &&^
-          powershell -nop -c "& {sleep -m 10000}" &&^
-          curl -s --fail -H "authority: download.ikmultimedia.com" -H "cookie: tracking_cookies=google^%^2Cfacebook^%^2Ciklinkconversion; tracking_cookies_ts=2023-01-31+05^%^3A01^%^3A21; _ga=GA1.2.419310126.1675141283; _gid=GA1.2.1546886731.1675141283; _gat=1; _gcl_au=1.1.1537200537.1675141283; _fbp=fb.1.1675141283181.205757627" -H "referer: https://www.ikmultimedia.com/" -H "sec-ch-ua: ^\^"Not_A Brand^\^";v=^\^"99^\^", ^\^"Google Chrome^\^";v=^\^"109^\^", ^\^"Chromium^\^";v=^\^"109^\^"" -H "sec-fetch-dest: document" -H "sec-fetch-mode: navigate" -H "sec-fetch-site: same-site" -H "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" -L -O -J https://download.ikmultimedia.com/plugins/ProductManager/ik_product_manager_1.0.4.zip
-          if %ERRORLEVEL% NEQ 0 goto :more_to_process
+          curl \
+          -H 'authority: download.ikmultimedia.com' \
+          -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
+          -H 'accept-language: en-US,en;q=0.9' \
+          -H 'cookie: tracking_cookies=google%2Cfacebook%2Ciklinkconversion; tracking_cookies_ts=2023-01-31+05%3A01%3A21; _ga=GA1.2.419310126.1675141283; _gid=GA1.2.1546886731.1675141283; _gcl_au=1.1.1537200537.1675141283; _fbp=fb.1.1675141283181.205757627; _gat=1' \
+          -H 'referer: https://www.ikmultimedia.com/' \
+          -H 'sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"' \
+          -H 'sec-ch-ua-mobile: ?0' \
+          -H 'sec-ch-ua-platform: "Windows"' \
+          -H 'sec-fetch-dest: document' \
+          -H 'sec-fetch-mode: navigate' \
+          -H 'sec-fetch-site: same-site' \
+          -H 'sec-fetch-user: ?1' \
+          -H 'upgrade-insecure-requests: 1' \
+          -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36' \
+          --compressed -L -O -J 'https://download.ikmultimedia.com/plugins/ProductManager/ik_product_manager_1.0.4.zip'
+          
+          
+#         run: |
+#           :more_to_process
+#           echo "waiting" &&^
+#           powershell -nop -c "& {sleep -m 10000}" &&^
+#           curl -s --fail -H "authority: download.ikmultimedia.com" -H "cookie: tracking_cookies=google^%^2Cfacebook^%^2Ciklinkconversion; tracking_cookies_ts=2023-01-31+05^%^3A01^%^3A21; _ga=GA1.2.419310126.1675141283; _gid=GA1.2.1546886731.1675141283; _gat=1; _gcl_au=1.1.1537200537.1675141283; _fbp=fb.1.1675141283181.205757627" -H "referer: https://www.ikmultimedia.com/" -H "sec-ch-ua: ^\^"Not_A Brand^\^";v=^\^"99^\^", ^\^"Google Chrome^\^";v=^\^"109^\^", ^\^"Chromium^\^";v=^\^"109^\^"" -H "sec-fetch-dest: document" -H "sec-fetch-mode: navigate" -H "sec-fetch-site: same-site" -H "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" -L -O -J https://download.ikmultimedia.com/plugins/ProductManager/ik_product_manager_1.0.4.zip
+#           if %ERRORLEVEL% NEQ 0 goto :more_to_process
           
       - name: uncompress 
         shell: cmd
