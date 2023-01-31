@@ -47,6 +47,7 @@ jobs:
           7z.exe x ik_product_manager_1.0.4.zip &&^
           dir /s &&^
           cd ik_product_manager_1.0.4 &&^
+          7z.exe x "Install IK Product Manager (v.1.0.4).exe" &&^
           cd $PLUGINSDIR &&^
           dir /s &&^
           7z.exe x app-64.7z -o"C:\installation"
